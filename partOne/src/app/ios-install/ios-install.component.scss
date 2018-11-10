@@ -1,0 +1,22 @@
+:host {
+    opacity: 0.8;
+}
+.content {
+    margin: 0.5em;
+    text-align: center;
+}
+.full-width {
+    margin-top: 1em;
+    width: 100%;
+    text-align: center;
+}
+.link-close {
+    color: red;
+    font-variant-caps: all-petite-caps;
+    font-weight: bold;
+}
+.btn-close {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
