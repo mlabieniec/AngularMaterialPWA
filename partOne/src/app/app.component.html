@@ -6,11 +6,16 @@
       mode="over" 
       class="sidenav">
       <div class="content"> 
-        <mat-list>
-          <mat-list-item *ngFor="let route of nav">
-            <a mat-button routerLink="{{route.path}}" routerLinkActive="active" (click)="toggleMobileNav(lnav)">{{route.title}}</a>
-          </mat-list-item>
-        </mat-list>
+        <nav>
+          <mat-list>
+            <mat-list-item *ngFor="let route of nav">
+              <a mat-button 
+                routerLink="{{route.path}}" 
+                routerLinkActive="active" 
+                (click)="toggleMobileNav(lnav)">{{route.title}}</a>
+            </mat-list-item>
+          </mat-list>
+        </nav>
       </div>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">
@@ -18,15 +23,17 @@
         class="toolbar" 
         [class.app-is-mobile]="mobileQuery.matches" 
         color="primary">
-        <button 
-          mat-icon-button 
-          (click)="lnav.toggle()" 
-          *ngIf="mobileQuery.matches">
-          <mat-icon>menu</mat-icon>
-        </button>
-        {{title}}
-        <div class="fill-space"></div>
-        <span whoami></span>
+        <header>
+          <button 
+            mat-icon-button 
+            aria-label="Menu"
+            (click)="lnav.toggle()" 
+            *ngIf="mobileQuery.matches">
+            <mat-icon>menu</mat-icon>
+          </button>
+          {{title}}
+          <div class="fill-space"></div>
+        </header>
       </mat-toolbar>
         <mat-drawer-container class="sidenav-container">
           <mat-drawer 
@@ -35,14 +42,19 @@
             <div class="content">
               <mat-list>
                 <mat-list-item *ngFor="let route of nav">
-                  <a mat-button routerLink="{{route.path}}" routerLinkActive="active" (click)="toggleMobileNav(lnav)">{{route.title}}</a>
+                  <a mat-button 
+                    routerLink="{{route.path}}" 
+                    routerLinkActive="active" 
+                    (click)="toggleMobileNav(lnav)">{{route.title}}</a>
                 </mat-list-item>
               </mat-list>
             </div>
           </mat-drawer>
           <mat-drawer-content>
               <div class="content">
-                <router-outlet></router-outlet>
+                <main>
+                  <router-outlet></router-outlet>
+                </main>
               </div>
           </mat-drawer-content>
         </mat-drawer-container>
