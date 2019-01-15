@@ -42,7 +42,7 @@ export class SignUpComponent implements OnInit {
       .afterDismissed()
       .subscribe(
         (data: CountryCode) => {
-          this.countryCode = data.dial_code;
+          this.countryCode = (data)?data.dial_code:this.countryCode;
         }
     )
   }
