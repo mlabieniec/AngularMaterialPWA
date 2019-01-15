@@ -1,0 +1,21 @@
+import { Component, OnInit } from '@angular/core';
+import { CountryCode, CountryCodes } from '../country-code-select/country-codes';
+import { MatBottomSheetRef } from '@angular/material';
+
+@Component({
+  selector: 'app-country-code-select',
+  templateUrl: './country-code-select.component.html',
+  styleUrls: ['./country-code-select.component.scss']
+})
+export class CountryCodeSelectComponent implements OnInit {
+  countryCodes: Array<CountryCode> = CountryCodes;
+  constructor(private bottomSheetRef: MatBottomSheetRef<CountryCodeSelectComponent>) { }
+
+  ngOnInit() {
+  }
+
+  selectCountry(code: CountryCode) {
+    this.bottomSheetRef.dismiss(code);
+  }
+
+}

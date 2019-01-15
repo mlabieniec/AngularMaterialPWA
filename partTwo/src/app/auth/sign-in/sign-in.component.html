@@ -1,0 +1,20 @@
+<form [formGroup]="signinForm">
+  <h2>Sign in to your account</h2>
+  <mat-form-field>
+      <input matInput placeholder="Email" type="email" formControlName="email" required>
+      <mat-hint *ngIf="!emailInput.value">Enter your email address</mat-hint>
+      <mat-error *ngIf="!emailInput.valid">
+          {{getEmailInputError()}}
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-hint *ngIf="!passwordInput.value">Enter your password</mat-hint>
+      <mat-error *ngIf="!passwordInput.valid">
+          {{getPasswordInputError()}}
+      </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary">Sign In</button>
+  <p>Don't have an account? <a routerLink="/auth/signup">Sign up</a></p>
+</form>
