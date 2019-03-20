@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { CognitoUser } from '@aws-amplify/auth';
-import { NotificationService } from 'src/app/notification.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LoaderService } from 'src/app/loader/loader.service';

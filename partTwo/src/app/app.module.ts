@@ -18,6 +18,7 @@ import { AuthService } from './auth/auth.service';
 import { ConfirmCodeComponent } from './auth/confirm-code/confirm-code.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { LoaderComponent } from './loader/loader.component';
+import { AvatarComponent } from './auth/profile/avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoaderComponent } from './loader/loader.component';
     FilterPipe,
     ConfirmCodeComponent,
     ProfileComponent,
-    LoaderComponent
+    LoaderComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,

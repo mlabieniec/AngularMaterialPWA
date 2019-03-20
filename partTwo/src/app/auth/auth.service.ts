@@ -21,12 +21,6 @@ export class AuthService {
   authState: Observable<CognitoUser|any> = this._authState.asObservable();
 
   constructor() { }
-
-  checkAuthSession() {
-    Auth.currentAuthenticatedUser()
-      .then((user: CognitoUser|any) => this._authState.next(user))
-      .catch(() => this._authState.next(false));
-  }
   
   signUp(user: NewUser): Promise<CognitoUser|any> {
     return Auth.signUp({
