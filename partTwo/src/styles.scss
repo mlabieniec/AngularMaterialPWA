@@ -18,7 +18,7 @@ $app-active: mat-palette($mat-yellow, 800);
 $app-warn:    mat-palette($mat-orange);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

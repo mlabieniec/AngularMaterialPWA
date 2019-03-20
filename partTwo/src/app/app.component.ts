@@ -7,6 +7,7 @@ import {
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav, MatSnackBar } from '@angular/material';
 import { IosInstallComponent } from './ios-install/ios-install.component';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +23,8 @@ export class AppComponent implements OnInit {
       'path': '/'
     },
     {
-      'title': 'My Account (Part 2)',
-      'path': '/auth'
+      'title': 'Authentication (Part 2)',
+      'path': '/auth/signin'
     }
   ];
   private _mobileQueryListener: () => void;
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
   constructor( 
      changeDetectorRef: ChangeDetectorRef, 
      media: MediaMatcher,
+     public auth: AuthService,
      private toast: MatSnackBar ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -49,10 +51,12 @@ export class AppComponent implements OnInit {
 
     // Checks if should display install popup notification:
     if (isIos() && !isInStandaloneMode()) {
-      this.toast.openFromComponent(IosInstallComponent, { 
-        duration: 8000,
-        horizontalPosition: 'start', 
-        panelClass: ['mat-elevation-z3'] 
+      setTimeout(() => {
+        this.toast.openFromComponent(IosInstallComponent, { 
+          duration: 8000,
+          horizontalPosition: 'start', 
+          panelClass: ['mat-elevation-z3'] 
+        });
       });
     }
   }

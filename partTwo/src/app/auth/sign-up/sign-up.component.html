@@ -1,20 +1,20 @@
 <form [formGroup]="signupForm">
   <h2>Create a new account</h2>
   <mat-form-field>
-      <input matInput placeholder="Email" type="email" formControlName="email" required>
+      <input matInput placeholder="Email" type="email" formControlName="email" autocomplete="email" required>
       <mat-hint *ngIf="!emailInput.value">Enter your email address</mat-hint>
   </mat-form-field>
   <mat-form-field>
     <span matPrefix>{{ countryCode }} &nbsp;</span>
-    <input type="tel" matInput placeholder="Telephone" formControlName="phone">
+    <input type="tel" matInput placeholder="Telephone" formControlName="phone" autocomplete="tel">
     <mat-icon matSuffix class="cursor-pointer" (click)="selectCountryCode()">mode_edit</mat-icon>
   </mat-form-field>
   <mat-form-field>
-      <input matInput placeholder="First Name" type="text" formControlName="fname" required>
+      <input matInput placeholder="First Name" type="text" formControlName="fname" autocomplete="given-name" required>
       <mat-hint *ngIf="!fnameInput.value">Enter your first name</mat-hint>
   </mat-form-field>
   <mat-form-field>
-      <input matInput placeholder="Last Name" type="text" formControlName="lname" required>
+      <input matInput placeholder="Last Name" type="text" formControlName="lname" autocomplete="family-name" required>
       <mat-hint *ngIf="!lnameInput.value">Enter your last name</mat-hint>
   </mat-form-field>
   <mat-form-field>

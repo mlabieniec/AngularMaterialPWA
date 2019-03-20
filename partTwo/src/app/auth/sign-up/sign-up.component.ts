@@ -4,6 +4,9 @@ import { MatBottomSheet } from '@angular/material';
 import { CountryCodeSelectComponent } from '../country-code-select/country-code-select.component';
 import { CountryCode } from '../country-code-select/country-codes';
 import { AuthService, NewUser } from '../auth.service';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+import Auth from '@aws-amplify/auth';
 
 @Component({
   selector: 'app-sign-up',
@@ -29,8 +32,9 @@ export class SignUpComponent implements OnInit {
   get phoneInput() { return this.signupForm.get('phone'); }
 
   constructor( 
-    private bottomSheet: MatBottomSheet, 
-    private authService: AuthService ) { 
+    private _bottomSheet: MatBottomSheet, 
+    private _authService: AuthService,
+    private _router: Router ) { 
       
     }
 
@@ -38,7 +42,7 @@ export class SignUpComponent implements OnInit {
   }
 
   selectCountryCode() {
-    this.bottomSheet.open(CountryCodeSelectComponent)
+    this._bottomSheet.open(CountryCodeSelectComponent)
       .afterDismissed()
       .subscribe(
         (data: CountryCode) => {
@@ -71,14 +75,17 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    this.authService.signUp({
+    this._authService.signUp({
       "email": this.emailInput.value,
       "password": this.passwordInput.value,
       "firstName": this.fnameInput.value,
       "lastName": this.lnameInput.value,
-      "phone": this.phoneInput.value
+      "phone": this.countryCode + this.phoneInput.value
     })
-    .then((data) => console.log(data))
+    .then((data) => {
+      environment.confirm.email = this.emailInput.value;
+      this._router.navigate(['auth/confirm']);
+    })
     .catch((error) => console.log(error));
   }
 

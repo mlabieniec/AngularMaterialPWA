@@ -15,16 +15,17 @@ export interface NewUser {
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor() { }
-
+  
+  public loggedIn: boolean;
   private _authState: Subject<CognitoUser|any> = new Subject<CognitoUser|any>();
   authState: Observable<CognitoUser|any> = this._authState.asObservable();
+
+  constructor() { }
 
   checkAuthSession() {
     Auth.currentAuthenticatedUser()
       .then((user: CognitoUser|any) => this._authState.next(user))
-      .catch(() => this._authState.next());
+      .catch(() => this._authState.next(false));
   }
   
   signUp(user: NewUser): Promise<CognitoUser|any> {
@@ -32,11 +33,27 @@ export class AuthService {
       "username": user.email,
       "password": user.password,
       "attributes": {
+        "email": user.email,
         "given_name": user.firstName,
         "family_name": user.lastName,
         "phone_number": user.phone
       }
     });
+  }
+
+  signIn(username: string, password: string):Promise<CognitoUser|any> {
+    return new Promise((resolve,reject) => {
+      Auth.signIn(username,password)
+      .then((user: CognitoUser|any) => {
+        this.loggedIn = true;
+        resolve(user);
+      }).catch((error: any) => reject(error));
+    });
+  }
+
+  signOut(): Promise<any> {
+    return Auth.signOut()
+      .then(() => this.loggedIn = false)
   }
 
 }

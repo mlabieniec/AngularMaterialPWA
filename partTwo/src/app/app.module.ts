@@ -15,6 +15,9 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { CountryCodeSelectComponent } from './auth/country-code-select/country-code-select.component';
 import { FilterPipe } from './auth/country-code-select/filter.pipe';
 import { AuthService } from './auth/auth.service';
+import { ConfirmCodeComponent } from './auth/confirm-code/confirm-code.component';
+import { ProfileComponent } from './auth/profile/profile.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { AuthService } from './auth/auth.service';
     IosInstallComponent,
     SignUpComponent,
     CountryCodeSelectComponent,
-    FilterPipe
+    FilterPipe,
+    ConfirmCodeComponent,
+    ProfileComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +44,6 @@ import { AuthService } from './auth/auth.service';
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
-  entryComponents: [IosInstallComponent,CountryCodeSelectComponent]
+  entryComponents: [ IosInstallComponent, CountryCodeSelectComponent, LoaderComponent ]
 })
 export class AppModule { }

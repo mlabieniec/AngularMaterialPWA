@@ -1,7 +1,7 @@
 <form [formGroup]="signinForm">
   <h2>Sign in to your account</h2>
   <mat-form-field>
-      <input matInput placeholder="Email" type="email" formControlName="email" required>
+      <input matInput placeholder="Email" type="email" formControlName="email" autocomplete="email" required>
       <mat-hint *ngIf="!emailInput.value">Enter your email address</mat-hint>
       <mat-error *ngIf="!emailInput.valid">
           {{getEmailInputError()}}
@@ -15,6 +15,6 @@
           {{getPasswordInputError()}}
       </mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary">Sign In</button>
+  <button mat-raised-button color="primary" (click)="signIn()" [disabled]="!signinForm.valid">Sign In</button>
   <p>Don't have an account? <a routerLink="/auth/signup">Sign up</a></p>
 </form>

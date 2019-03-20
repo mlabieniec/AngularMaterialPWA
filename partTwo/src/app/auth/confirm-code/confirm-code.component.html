@@ -1,0 +1,12 @@
+<form [formGroup]="confirmForm">
+  <h2>Confirm your email address</h2>
+  <mat-form-field>
+      <input matInput placeholder="Email" type="email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="Confirmation Code" type="text" formControlName="code" required>
+      <mat-hint *ngIf="!codeInput.value">Enter the confirmation code that was emailed to you</mat-hint>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="confirmCode()">Confirm</button>
+  <p>Didn't receive a code? <a href="javascript:void(null)" (click)="sendAgain()">Send again</a></p>
+</form>
