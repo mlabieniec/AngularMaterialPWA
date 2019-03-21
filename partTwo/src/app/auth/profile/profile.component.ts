@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Auth, { CognitoUser } from '@aws-amplify/auth';
 import Storage from '@aws-amplify/storage';
 import { NotificationService } from 'src/app/services/notification.service';
+import { LoaderService } from 'src/app/loader/loader.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +24,6 @@ export class ProfileComponent implements OnInit {
   deleteAvatar = false;
   profile:any = {};
   user: CognitoUser;
-  loading = true;
   
   get emailInput() { return this.profileForm.get('email'); }
   get fnameInput() { return this.profileForm.get('fname'); }
@@ -33,9 +33,11 @@ export class ProfileComponent implements OnInit {
   constructor( 
     private _authService: AuthService,
     private _router: Router,
-    private _notification: NotificationService ) { }
+    private _notification: NotificationService,
+    public loading: LoaderService ) { }
 
   ngOnInit() {
+    this.loading.show();
     this.getUserInfo();
   }
 
@@ -49,7 +51,7 @@ export class ProfileComponent implements OnInit {
     this.fnameInput.setValue(this.profile.attributes['given_name']);
     this.lnameInput.setValue(this.profile.attributes['family_name']);
     this.phoneInput.setValue(this.profile.attributes['phone_number']);
-    this.loading = false;
+    this.loading.hide();
   }
 
   getEmailInputError() {
@@ -68,7 +70,7 @@ export class ProfileComponent implements OnInit {
 
   onAvatarUploadComplete(data: any) {
     this.avatar = data.key;
-    this.loading = false;
+    this.loading.hide();
   }
 
   onAvatarRemove() {
