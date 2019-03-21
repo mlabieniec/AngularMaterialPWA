@@ -1,3 +1,6 @@
+.container {
+    width: 100%;
+}
 form {
     width: 100%;
 }
@@ -13,4 +16,11 @@ form > * {
 
 .signout {
     float: right;
+}
+
+@media (min-width: 900px) { 
+    .container {
+        margin: 0 auto;
+        width: 75%;
+    }
 }

@@ -33,7 +33,8 @@
         <a mat-icon-button 
           routerLink="auth/signup" 
           routerLinkActive="active">
-          <mat-icon>account_circle</mat-icon>
+          <mat-icon *ngIf="!avatar">account_circle</mat-icon>
+          <img *ngIf="avatar" [src]="avatar" alt="User Avatar" class="avatar" />
         </a>
       </mat-toolbar>
         <mat-drawer-container class="sidenav-container">

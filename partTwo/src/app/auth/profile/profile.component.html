@@ -1,6 +1,5 @@
-<button mat-raised-button (click)="signOut()" class="signout">Sign Out</button>
+<div class="container">
 <h2>My Account</h2>
-<div>
     <form [formGroup]="profileForm" autocomplete="on">
     <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
   
@@ -29,5 +28,6 @@
     </div>
   
     <button mat-raised-button color="primary" (click)="editProfile()" [disabled]="loading || !profileForm.valid">Save</button>
+    <button mat-raised-button (click)="signOut()" class="signout">Sign Out</button>
   </form>
 </div>

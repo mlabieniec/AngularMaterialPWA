@@ -13,7 +13,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup = new FormGroup({
-    email: new FormControl('',[ Validators.email, Validators.required ]),
+    email: new FormControl('',[ Validators.email ]),
     phone: new FormControl('', [ Validators.min(10) ]),
     fname: new FormControl('', [ Validators.min(2) ]),
     lname: new FormControl('', [ Validators.min(2) ])
@@ -21,8 +21,8 @@ export class ProfileComponent implements OnInit {
   currentAvatarUrl: string;
   avatar: string;
   deleteAvatar = false;
-  currentAttributes:any = {};
-  currentUser: CognitoUser;
+  profile:any = {};
+  user: CognitoUser;
   loading = true;
   
   get emailInput() { return this.profileForm.get('email'); }
@@ -40,16 +40,15 @@ export class ProfileComponent implements OnInit {
   }
 
   async getUserInfo() {
-    this.currentAttributes = await Auth.currentUserInfo();
-    this.currentUser = await Auth.currentAuthenticatedUser();
-    console.log('attributes: ', this.currentAttributes);
-    if ( this.currentAttributes.attributes['custom:picture'] ) {
-      this.avatar = this.currentAttributes.attributes['custom:picture'];
+    this.profile = await Auth.currentUserInfo();
+    this.user = await Auth.currentAuthenticatedUser();
+    if ( this.profile.attributes['profile'] ) {
+      this.avatar = this.profile.attributes['profile'];
       this.currentAvatarUrl = await Storage.vault.get(this.avatar) as string;
     }
-    this.fnameInput.setValue(this.currentAttributes.attributes['given_name']);
-    this.lnameInput.setValue(this.currentAttributes.attributes['family_name']);
-    this.phoneInput.setValue(this.currentAttributes.attributes['phone_number']);
+    this.fnameInput.setValue(this.profile.attributes['given_name']);
+    this.lnameInput.setValue(this.profile.attributes['family_name']);
+    this.phoneInput.setValue(this.profile.attributes['phone_number']);
     this.loading = false;
   }
 
@@ -88,12 +87,9 @@ export class ProfileComponent implements OnInit {
       if (this.avatar) {
         attributes['profile'] = this.avatar;
       }
-      await Auth.updateUserAttributes(
-        this.currentUser,
-        attributes
-      );
+      await Auth.updateUserAttributes(this.user,attributes);
       if (!this.avatar && this.deleteAvatar) {
-        this.currentUser.deleteAttributes(["profile"],(error) => {
+        this.user.deleteAttributes(["profile"],(error) => {
           if (error) console.log(error);
           this._notification.show('Your profile information has been updated.');
         });

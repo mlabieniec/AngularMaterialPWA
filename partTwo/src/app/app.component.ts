@@ -8,6 +8,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav, MatSnackBar } from '@angular/material';
 import { IosInstallComponent } from './ios-install/ios-install.component';
 import { AuthService } from './auth/auth.service';
+import Auth from '@aws-amplify/auth';
+import Storage from '@aws-amplify/storage';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +29,7 @@ export class AppComponent implements OnInit {
       'path': '/auth/signin'
     }
   ];
+  avatar: string;
   private _mobileQueryListener: () => void;
   @Output() toggleSideNav = new EventEmitter();
   
@@ -41,6 +44,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.detectIOS();
+    this.checkSession();
+  }
+
+  async checkSession() {
+    const userInfo = await Auth.currentUserInfo();
+    if (userInfo && userInfo.attributes.profile) {
+      const avatar = userInfo.attributes.profile;
+      const url = await Storage.vault.get(avatar) as string;
+      this.avatar = url;
+    }
+  }
+
+  detectIOS() {
     // Detects if device is on iOS 
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
