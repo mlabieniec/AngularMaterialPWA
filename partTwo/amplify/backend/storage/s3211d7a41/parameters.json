@@ -1,0 +1,13 @@
+{
+    "bucketName": "angularmaterialpwaca8baa1f3b174e65b9318e092540bfc1",
+    "authPolicyName": "s3_amplify_211d7a41",
+    "unauthPolicyName": "s3_amplify_211d7a41",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authPermissions": "rw",
+    "unauthPermissions": ""
+}
