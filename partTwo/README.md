@@ -1,6 +1,6 @@
-# AngularPwaPostOne
+# Angular Material PWA Part Two
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
+This is part two for [this blog post series](https://medium.com/@michaellabieniec/part-1-building-a-progressive-web-application-pwa-with-angular-material-and-aws-amplify-5c741c957259).
 
 ## Development server
 
