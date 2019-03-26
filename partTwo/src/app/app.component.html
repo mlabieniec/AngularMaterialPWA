@@ -9,8 +9,7 @@
         <mat-list>
           <mat-list-item *ngFor="let route of nav">
             <a mat-button 
-              routerLink="{{route.path}}" 
-              routerLinkActive="active" 
+              routerLink="{{route.path}}"
               (click)="toggleMobileNav(lnav)">{{route.title}}</a>
           </mat-list-item>
         </mat-list>
@@ -31,8 +30,7 @@
         {{title}}
         <div class="fill-space"></div>
         <a mat-icon-button 
-          routerLink="auth/signup" 
-          routerLinkActive="active">
+          routerLink="auth/signup">
           <mat-icon *ngIf="!avatar">account_circle</mat-icon>
           <img *ngIf="avatar" [src]="avatar" alt="User Avatar" class="avatar" />
         </a>
