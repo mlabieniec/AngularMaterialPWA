@@ -3,10 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material';
 import { CountryCodeSelectComponent } from '../country-code-select/country-code-select.component';
 import { CountryCode } from '../country-code-select/country-codes';
-import { AuthService, NewUser } from '../auth.service';
+import { AuthService } from '../auth.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import Auth from '@aws-amplify/auth';
 
 @Component({
   selector: 'app-sign-up',
