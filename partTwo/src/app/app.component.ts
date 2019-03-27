@@ -49,6 +49,8 @@ export class AppComponent implements OnInit {
     const { channel, payload } = capsule;
     if (channel === 'auth' && payload.event === 'signOut') {
       this.avatar = undefined;
+    } else if (channel === 'auth' && payload.event === 'signIn') {
+      this.checkSession(); 
     }
   }
 
