@@ -83,6 +83,7 @@ export class SignUpComponent implements OnInit {
     })
     .then((data) => {
       environment.confirm.email = this.emailInput.value;
+      environment.confirm.password = this.passwordInput.value;
       this._router.navigate(['auth/confirm']);
     })
     .catch((error) => console.log(error));
