@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Auth from '@aws-amplify/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor( private _router: Router ) { }
 
   ngOnInit() {
+    Auth.currentAuthenticatedUser()
+      .then(() => {
+        this._router.navigate(['auth/profile']);
+        return false;
+      })
+      .catch(() => {
+        return true;
+      });
   }
 
 }
