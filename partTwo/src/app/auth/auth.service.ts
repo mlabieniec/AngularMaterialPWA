@@ -25,14 +25,12 @@ export class AuthService {
   public static SIGN_OUT = 'signOut'; 
 
   constructor() { 
-    Hub.listen('auth', this, 'authListener');
-  }
-
-  onHubCapsule(capsule) {
-    const { channel, payload } = capsule;
-    if (channel === 'auth') {
-      this._authState.next(payload.event);
-    }
+    Hub.listen('auth',(data) => {
+      const { channel, payload } = data;
+      if (channel === 'auth') {
+        this._authState.next(payload.event);
+      }
+    });
   }
   
   signUp(user: NewUser): Promise<CognitoUser|any> {

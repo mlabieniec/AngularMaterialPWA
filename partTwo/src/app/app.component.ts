@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
       'path': '/'
     },
     {
-      'title': 'Authentication (Part 2)',
+      'title': 'My Account (Part 2)',
       'path': '/auth/signin'
     }
   ];
