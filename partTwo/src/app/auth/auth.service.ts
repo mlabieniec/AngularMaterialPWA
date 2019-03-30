@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import Auth from '@aws-amplify/auth';
+import { Hub } from '@aws-amplify/core';
 import { Subject, Observable } from 'rxjs';
 import { CognitoUser } from 'amazon-cognito-identity-js';
 
@@ -20,7 +21,19 @@ export class AuthService {
   private _authState: Subject<CognitoUser|any> = new Subject<CognitoUser|any>();
   authState: Observable<CognitoUser|any> = this._authState.asObservable();
 
-  constructor() { }
+  public static SIGN_IN = 'signIn';
+  public static SIGN_OUT = 'signOut'; 
+
+  constructor() { 
+    Hub.listen('auth', this, 'authListener');
+  }
+
+  onHubCapsule(capsule) {
+    const { channel, payload } = capsule;
+    if (channel === 'auth') {
+      this._authState.next(payload.event);
+    }
+  }
   
   signUp(user: NewUser): Promise<CognitoUser|any> {
     return Auth.signUp({

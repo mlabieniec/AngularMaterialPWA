@@ -3,8 +3,7 @@ import {
   ChangeDetectorRef, 
   EventEmitter, 
   Output, 
-  OnInit} from '@angular/core';
-import { Hub } from '@aws-amplify/core';
+  OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav, MatSnackBar } from '@angular/material';
 import { IosInstallComponent } from './ios-install/ios-install.component';
@@ -42,14 +41,12 @@ export class AppComponent implements OnInit {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    Hub.listen('auth', this, 'authListener');
-  }
-
-  onHubCapsule(capsule) {
-    const { channel, payload } = capsule;
-    if (channel === 'auth' && payload.event === 'signOut') {
-      this.avatar = undefined;
-    }
+    auth.authState.subscribe((event: string) => {
+      if (event === AuthService.SIGN_IN)
+        this.checkSession();
+      if (event === AuthService.SIGN_OUT)
+        this.avatar = undefined;
+    });
   }
 
   ngOnInit() {
@@ -58,11 +55,15 @@ export class AppComponent implements OnInit {
   }
 
   async checkSession() {
-    const userInfo = await Auth.currentUserInfo();
-    if (userInfo && userInfo.attributes.profile) {
-      const avatar = userInfo.attributes.profile;
-      const url = await Storage.vault.get(avatar) as string;
-      this.avatar = url;
+    try {
+      const userInfo = await Auth.currentUserInfo();
+      if (userInfo && userInfo.attributes.profile) {
+        const avatar = userInfo.attributes.profile;
+        const url = await Storage.vault.get(avatar) as string;
+        this.avatar = url;
+      }
+    } catch(error) {
+      console.log('no session: ', error); 
     }
   }
 
