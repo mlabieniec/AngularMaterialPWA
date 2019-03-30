@@ -40,7 +40,9 @@ export class ConfirmCodeComponent implements OnInit {
     Auth.confirmSignUp(this.email, this.codeInput.value)
       .then((data: any) => {
         console.log(data);
-        if (data === 'SUCCESS' && environment.confirm.password) {
+        if (data === 'SUCCESS' &&
+            environment.confirm.email && 
+            environment.confirm.password) {
           Auth.signIn(this.email, environment.confirm.password)
             .then(() => {
               this._router.navigate(['']);
