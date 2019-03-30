@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CountryCode, CountryCodes } from '../country-code-select/country-codes';
+import { CountryCode, CountryCodes } from './country-codes';
 import { MatBottomSheetRef } from '@angular/material';
 
 @Component({
