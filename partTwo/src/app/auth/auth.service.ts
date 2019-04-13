@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Auth from '@aws-amplify/auth';
+import Auth, { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import { Hub } from '@aws-amplify/core';
 import { Subject, Observable } from 'rxjs';
 import { CognitoUser } from 'amazon-cognito-identity-js';
@@ -23,6 +23,8 @@ export class AuthService {
 
   public static SIGN_IN = 'signIn';
   public static SIGN_OUT = 'signOut'; 
+  public static FACEBOOK = CognitoHostedUIIdentityProvider.Facebook;
+  public static GOOGLE = CognitoHostedUIIdentityProvider.Google;
 
   constructor() { 
     Hub.listen('auth',(data) => {
@@ -59,6 +61,12 @@ export class AuthService {
   signOut(): Promise<any> {
     return Auth.signOut()
       .then(() => this.loggedIn = false)
+  }
+
+  socialSignIn(provider:CognitoHostedUIIdentityProvider): Promise<ICredentials> {
+    return Auth.federatedSignIn({
+      'provider': provider
+    });
   }
 
 }

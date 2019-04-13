@@ -67,4 +67,14 @@ export class SignInComponent {
         }
       })
   }
+
+  async signInWithFacebook() {
+    const socialResult = await this.auth.socialSignIn(AuthService.FACEBOOK);
+    console.log('fb Result:', socialResult);
+  }
+
+  async signInWithGoogle() {
+    const socialResult = await this.auth.socialSignIn(AuthService.GOOGLE);
+    console.log('google Result:', socialResult);
+  }
 }

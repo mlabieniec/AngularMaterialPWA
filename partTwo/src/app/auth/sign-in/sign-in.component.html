@@ -16,5 +16,8 @@
       </mat-error>
   </mat-form-field>
   <button mat-raised-button color="primary" (click)="signIn()" [disabled]="!signinForm.valid">Sign In</button>
+  <p style="text-align:center;">or</p>
+  <button mat-raised-button color="primary" (click)="signInWithFacebook()">Sign In with Facebook</button><br/><br/>
+  <button mat-raised-button color="primary" (click)="signInWithGoogle()">Sign In with Google</button>
   <p>Don't have an account? <a routerLink="/auth/signup">Sign up</a></p>
 </form>
