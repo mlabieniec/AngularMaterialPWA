@@ -1,6 +1,6 @@
 # Angular Material PWA Part Two
 
-This is part two for [this blog post series](https://medium.com/@michaellabieniec/part-1-building-a-progressive-web-application-pwa-with-angular-material-and-aws-amplify-5c741c957259).
+This is part two for [this blog post series](https://medium.com/@michaellabieniec/part-1-building-a-progressive-web-application-pwa-with-angular-material-and-aws-amplify-5c741c957259). Follow the instructions in the post to initialize the project.
 
 ## Development server
 
