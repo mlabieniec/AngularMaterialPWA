@@ -49,10 +49,12 @@ export class AppComponent implements OnInit {
 
     // Checks if should display install popup notification:
     if (isIos() && !isInStandaloneMode()) {
-      this.toast.openFromComponent(IosInstallComponent, { 
-        duration: 8000,
-        horizontalPosition: 'start', 
-        panelClass: ['mat-elevation-z3'] 
+      setTimeout(() => {
+          this.toast.openFromComponent(IosInstallComponent, {
+            duration: 8000,
+            horizontalPosition: 'start',
+            panelClass: ['mat-elevation-z3']
+          });
       });
     }
   }
