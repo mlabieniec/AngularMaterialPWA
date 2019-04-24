@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
             horizontalPosition: 'start',
             panelClass: ['mat-elevation-z3']
           });
-      }, 100);
+      });
     }
   }
   
