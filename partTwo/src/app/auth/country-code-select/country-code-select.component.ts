@@ -9,6 +9,7 @@ import { MatBottomSheetRef } from '@angular/material';
 })
 export class CountryCodeSelectComponent implements OnInit {
   countryCodes: Array<CountryCode> = CountryCodes;
+  searchText: string;
   constructor(private bottomSheetRef: MatBottomSheetRef<CountryCodeSelectComponent>) { }
 
   ngOnInit() {
