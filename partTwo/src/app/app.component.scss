@@ -1,0 +1,13 @@
+.fill-space {
+    flex: 1;
+}
+
+img.avatar {
+    display: block;
+    max-height: 36px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 50%;
+}

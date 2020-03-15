@@ -1,0 +1,76 @@
+@import '~@angular/material/theming';
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$app-primary: mat-palette($mat-indigo, 800);
+$app-accent:  mat-palette($mat-amber, 800);
+$app-active: mat-palette($mat-yellow, 800);
+
+// The warn palette is optional (defaults to red).
+$app-warn:    mat-palette($mat-orange);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
+.active {
+    color: mat-color($app-primary);
+}
+.valid, .primary {
+    color: mat-color($app-primary);
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+form {
+    width: 100%;
+}
+
+form > * {
+    margin-bottom: 1.5em;
+    width: 100%;
+}
+
+a {
+    color: mat-color($app-accent);
+}
+
+.sidenav-content {
+    flex-direction: column;
+}
+
+.sidenav-container {
+    height: 90%;
+}
+
+.app-content {
+    flex: 1;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.active {
+    color: mat-color($app-active);
+}

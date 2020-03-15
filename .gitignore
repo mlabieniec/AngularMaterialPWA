@@ -1,0 +1,5 @@
+# Amplify Files
+
+part*/amplify
+part*/.amplifyrc
+part*/src/aws-exports.js

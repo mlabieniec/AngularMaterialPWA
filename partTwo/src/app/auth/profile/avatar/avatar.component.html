@@ -1,0 +1,33 @@
+<div class="app-avatar">
+    <div class="app-avatar-container">
+  
+      <div 
+        [class]="previewClass" 
+        *ngIf="!hasPhoto"
+        (drop)="onDrop($event)"
+        (dragleave)="onDragout($event)"
+        (dragover)="onDragover($event)"></div>
+      <div class="app-avatar-preview">
+        <img class="app-avatar-preview"
+          src="{{photoUrl}}"
+          *ngIf="hasPhoto"
+          alt="Avatar Preview"
+          (error)="onPhotoError()"
+        />
+      <button mat-mini-fab (click)="this.removed.emit()" *ngIf="hasPhoto && !uploading" class="avatar-remove" title="Delete avatar" aria-label="Delete avatar"><mat-icon>close</mat-icon></button>
+      <small *ngIf="uploading"><br/>Processing Avatar...</small>
+      </div>
+      <div class="app-upload-input" *ngIf="!uploading && !hasPhoto">
+        <input type="file" 
+          accept="image/*"
+          (change)="pick($event)"/>
+      </div>
+    </div>
+    <div class="app-alert" *ngIf="errorMessage">
+      <div class="app-alert-body">
+        <span class="app-alert-icon">&#9888;</span>
+        <div class="app-alert-message">{{ errorMessage }}</div>
+        <a class="app-alert-close" (click)="onAlertClose()">&times;</a>
+      </div>
+    </div>
+  </div>

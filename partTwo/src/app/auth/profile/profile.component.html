@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>My Account</h2>
+  <form [formGroup]="profileForm" autocomplete="on">
+  <mat-form-field>
+    <input matInput placeholder="First Name" type="text" formControlName="fname" autocomplete="family-name" required>
+    <mat-hint *ngIf="!fnameInput.value">Enter your first name</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Last Name" type="text" formControlName="lname" autocomplete="given-name" required>
+    <mat-hint *ngIf="!lnameInput.value">Enter your last name</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="tel" matInput placeholder="Telephone" formControlName="phone" autocomplete="tel">
+  </mat-form-field>
+
+  <div class="profile-picture">
+    <label>Profile Picture</label>
+    <app-avatar 
+      [url]="currentAvatarUrl"
+      (loaded)="this.loading.show()"
+      (uploaded)="onAvatarUploadComplete($event)"
+      (removed)="onAvatarRemove()">
+    </app-avatar>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="editProfile()" [disabled]="loading.loading || !profileForm.valid">Save</button>
+  <button mat-raised-button (click)="signOut()" class="signout">Sign Out</button>
+  </form>
+</div>
