@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "pushd dist/AngularPwaPostOne; python -m SimpleHTTPServer; popd",
+    "start": "cd dist/AngularPwaPostOne; python -m SimpleHTTPServer; popd",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
