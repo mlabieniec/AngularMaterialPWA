@@ -1,0 +1,9 @@
+<mat-form-field class="full-width country-filter">
+  <input matInput [(ngModel)]="searchText" placeholder="Filter Countries">
+</mat-form-field>
+<mat-nav-list class="country-list">
+  <a mat-list-item *ngFor="let code of countryCodes | filter : searchText" (click)="selectCountry(code)">
+    <span mat-line>{{ code.name }}</span>
+    <span mat-line>{{ code.dial_code }}</span>
+  </a>
+</mat-nav-list>

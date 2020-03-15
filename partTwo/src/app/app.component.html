@@ -1,0 +1,61 @@
+<div class="container">
+  <mat-sidenav-container 
+    fullscreen
+    [hasBackdrop]="mobileQuery.matches">
+    <mat-sidenav #lnav
+      mode="over" 
+      class="sidenav">
+      <div class="content"> 
+        <mat-list>
+          <mat-list-item *ngFor="let route of nav">
+            <a mat-button 
+              routerLink="{{route.path}}"
+              (click)="toggleMobileNav(lnav)">{{route.title}}</a>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+      <mat-toolbar 
+        class="toolbar" 
+        [class.app-is-mobile]="mobileQuery.matches" 
+        color="primary">
+        <button 
+          mat-icon-button 
+          aria-label="Menu"
+          (click)="lnav.toggle()" 
+          *ngIf="mobileQuery.matches">
+          <mat-icon>menu</mat-icon>
+        </button>
+        {{title}}
+        <div class="fill-space"></div>
+        <a mat-icon-button 
+          routerLink="auth/signup">
+          <mat-icon *ngIf="!avatar">account_circle</mat-icon>
+          <img *ngIf="avatar" [src]="avatar" alt="User Avatar" class="avatar" />
+        </a>
+      </mat-toolbar>
+        <mat-drawer-container class="sidenav-container">
+          <mat-drawer 
+            mode="side" 
+            [opened]="!mobileQuery.matches">
+            <div class="content">
+              <mat-list>
+                <mat-list-item *ngFor="let route of nav">
+                  <a mat-button 
+                    routerLink="{{route.path}}" 
+                    routerLinkActive="active" 
+                    (click)="toggleMobileNav(lnav)">{{route.title}}</a>
+                </mat-list-item>
+              </mat-list>
+            </div>
+          </mat-drawer>
+          <mat-drawer-content>
+              <div class="app-content" role="main">
+                <router-outlet></router-outlet>
+              </div>
+          </mat-drawer-content>
+        </mat-drawer-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
