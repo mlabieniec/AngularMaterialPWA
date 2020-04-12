@@ -2,6 +2,18 @@
 
 This is part two for [this blog post series](https://medium.com/@michaellabieniec/part-1-building-a-progressive-web-application-pwa-with-angular-material-and-aws-amplify-5c741c957259). Follow the instructions in the post to initialize the project.
 
+# Build Your Own App
+
+To use as a scaffold for your own PWA, you can copy `partTwo` as a starting point for your app.
+
+```
+$ cp -fR AngularMaterialPWA/partTwo ./my-app
+$ cd my-app && npm i
+$ amplify init
+$ amplify add auth
+$ amplify add hosting
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
