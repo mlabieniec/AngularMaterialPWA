@@ -10,8 +10,7 @@ To use as a scaffold for your own PWA, you can copy `partTwo` as a starting poin
 $ cp -fR AngularMaterialPWA/partTwo ./my-app
 $ cd my-app && npm i
 $ amplify init
-$ amplify add auth
-$ amplify add hosting
+$ amplify add auth # Check the details on the blog post for selections
 ```
 
 ## Development server
