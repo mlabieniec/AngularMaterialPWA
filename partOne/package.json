@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "pushd dist/AngularPwaPostOne; python -m SimpleHTTPServer; popd",
+    "start": "ng build --prod && http-server ./dist/AngularPwaPostOne",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -38,6 +38,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~11.11.3",
     "codelyzer": "^5.2.1",
+    "http-server": "^13.0.1",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.1",
