@@ -12,6 +12,6 @@ To use as a scaffold for your own PWA, you can copy `partTwo` which has authenti
 $ cp -fR AngularMaterialPWA/partTwo ./my-app
 $ cd my-app && npm i
 $ amplify init
-$ amplify add auth
+$ amplify add auth # Check the blog post (part 2) for relevent answers for the auth setup
 $ amplify add hosting
 ```
