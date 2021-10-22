@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/partOne"
+    schedule:
+      interval: "daily"
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/partTwo"
+    schedule:
+      interval: "daily"
