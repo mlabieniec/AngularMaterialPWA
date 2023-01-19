@@ -21,7 +21,7 @@
     "@angular/material": "^14.2.4",
     "@angular/platform-browser": "^14.2.5",
     "@angular/platform-browser-dynamic": "^14.2.5",
-    "@angular/pwa": "^14.2.5",
+    "@angular/pwa": "^15.1.2",
     "@angular/router": "^14.2.5",
     "@angular/service-worker": "^14.2.5",
     "core-js": "^3.25.5",
